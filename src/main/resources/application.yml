@@ -1,0 +1,7 @@
+server:
+  port: 8080
+
+aws:
+  region: eu-north-1
+  dynamodb:
+    table: Bills
