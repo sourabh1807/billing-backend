@@ -12,8 +12,8 @@ public class BillService {
         this.repository = repository;
     }
 
-    public void createBill(Bill bill) {
-        repository.save(bill);
+    public Bill createBill(Bill bill) {
+        return repository.save(bill);
     }
 
     public Bill getBill(String billId) {

@@ -14,9 +14,9 @@ public class BillController {
     }
 
     @PostMapping
-    public String createBill(@RequestBody Bill bill) {
-        service.createBill(bill);
-        return "Bill saved successfully with ID: " + bill.getBillId();
+    public Bill createBill(@RequestBody Bill bill) {
+        return service.createBill(bill);
+
     }
 
 

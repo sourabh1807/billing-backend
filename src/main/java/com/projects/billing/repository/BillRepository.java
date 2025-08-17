@@ -28,14 +28,14 @@ public class BillRepository {
         this.objectMapper = objectMapper;
     }
 
-    public void save(Bill bill) {
+    public Bill save(Bill bill) {
         try {
 
             if (bill.getBillId() == null || bill.getBillId().isEmpty()) {
                 String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
                 bill.setBillId("BILL-" + timestamp);
             }
-            
+
             Map<String, AttributeValue> item = new HashMap<>();
             item.put("billId", AttributeValue.builder().s(bill.getBillId()).build());
             item.put("date", AttributeValue.builder().s(bill.getDate()).build());
@@ -56,6 +56,7 @@ public class BillRepository {
             dynamoDbClient.putItem(request);
 
             System.out.println("Bill saved successfully with ID: " + bill.getBillId());
+            return bill;
         } catch ( JsonProcessingException e) {
             throw new RuntimeException("Error serializing customer/products", e);
         }
